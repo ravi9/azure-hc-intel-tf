@@ -86,7 +86,7 @@ TF_ARGS=" \
  --data_dir=${TF_RECORDS_DIR} \
  --data_name=imagenet "
 
-echo "Common Args: $args"
+echo -e "Common Args: $args"
 
 if [ "${FABRIC}" == "ib" ]; then
     FABRIC_ARGS="-mca pml ucx \
@@ -99,6 +99,8 @@ if [ "${FABRIC}" == "ib" ]; then
 else
     FABRIC_ARGS="-mca pml ^ucx "
 fi
+
+echo -e "TF Args: $FABRIC_ARGS"
 
 run_cmd="mpirun \
 --oversubscribe -np ${TOTAL_WORKERS} \
