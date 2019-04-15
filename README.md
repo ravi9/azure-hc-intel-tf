@@ -21,7 +21,7 @@ cd ~/azure-hc-intel-tf/
 tmux
 
 # Inside the tmux window pane, start the installations, pass an argument for appropriate MPI. <intelmpi|openmpi>
-time sudo ./2-setup-host-and-build-container.sh intelmpi 2>&1 | tee 2-setup-host-and-build-container.log
+time sudo sh -c "./2-setup-host-and-build-container.sh intelmpi 2>&1 | tee /tmp/2-setup-host-and-build-container.log"
 
 
 ```
