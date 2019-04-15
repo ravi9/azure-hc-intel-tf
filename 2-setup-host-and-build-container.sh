@@ -8,6 +8,10 @@ if [ $# != 1 ]; then
     exit 1
 fi
 
+# Used to save setenv file with all the ENV PATHS
+mkdir -p /mnt/shared/
+chmod -R 777 /mnt/shared/
+
 pushd install-scripts
 
 if [ "$1" == "intelmpi" ]; then
