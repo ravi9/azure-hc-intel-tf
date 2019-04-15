@@ -32,10 +32,10 @@ cd && rm -rf /tmp/mpi
 impi_path="export PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/bin:$PATH
 export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/lib/release_mt:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/opt/libfabric-debug/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH=/opt/libfabric-debug/lib:$LD_LIBRARY_PATH
+export PATH=/opt/libfabric-debug/bin:$PATH"
 
 #set env on /mnt/shared/ which can be used when launched after VM is generalized
 echo -e "$impi_path" >> /mnt/shared/setenv
 
-#restart shell
-su -l $USER
+source /mnt/shared/setenv

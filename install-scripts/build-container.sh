@@ -17,6 +17,9 @@ fi
 
 source /mnt/shared/setenv
 
+mkdir -p /mnt/shared/tensorflow
+chmod -R 777 /mnt/shared/
+
 SIF_PATH=/mnt/shared/tensorflow/${PREFIX}.sif
 DEF_FILE=${PREFIX}.def
 

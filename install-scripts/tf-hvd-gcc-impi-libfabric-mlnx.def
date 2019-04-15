@@ -12,15 +12,17 @@ rm -rf /var/cache/yum
 yum -y install epel-release
 yum -y install wget git
 
-mkdir -p /mnt/shared/tensorflow
+mkdir -p /mnt/shared/
 chmod -R 777 /mnt/shared/
 
-cd ~
+cd /tmp
 git clone https://github.com/ravi9/azure-hc-intel-tf.git
-cd ~/azure-hc-intel-tf
+cd /tmp/azure-hc-intel-tf
 
 # Install dev_tools, OFED, IPoIB, WALinuxAgent, gcc 8.2, UCX1.5, OpenMPI4.0, miniconda, intel-tensorflow, horovod libraries
 ./setup.sh intelmpi container
+
+cd && rm -rf /tmp/azure-hc-intel-tf
 
 %environment
 
@@ -45,7 +47,7 @@ echo "MKL shared libs: $(ldd $(pip show tensorflow | grep Location | cut -d ":" 
 echo "IsMklEnabled: "
 python -c "import tensorflow as tf; print(tf.pywrap_tensorflow.IsMklEnabled())"
 echo "Horovod: $(pip show horovod --disable-pip-version-check | grep "^Version:" | awk '{print $NF}')"
-echo "OpenMPI: $(ompi_info | grep "Open MPI:" | awk '{print $NF}')"
+echo "Intel MPI: $(mpirun -version | head -1)"
 echo "OFED: $(ofed_info | grep MLNX_OFED)"
-echo "UCX Version: $(ucx_info -v)"
+echo "Libfabric Version: $(/opt/libfabric-debug/bin/fi_info --version)"
 echo "TensorFlow Benchmarks: /opt/tensorflow-benchmarks"

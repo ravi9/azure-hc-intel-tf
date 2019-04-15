@@ -11,8 +11,14 @@ INSTALL_PREFIX=/opt
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p ${INSTALL_PREFIX}/miniconda3
 
-export PATH=${INSTALL_PREFIX}/miniconda3/bin:$PATH
 rm -rf Miniconda3-latest-Linux-x86_64.sh
+
+conda_path="export PATH=${INSTALL_PREFIX}/miniconda3/bin:$PATH"
+#set env on /mnt/shared/ which can be used when launched after VM is generalized
+echo -e "$conda_path" >> /mnt/shared/setenv
+
+# Set ENV for GCC, MPI, conda
+source /mnt/shared/setenv
 
 conda install -y tensorflow
 pip install --no-cache-dir Horovod
