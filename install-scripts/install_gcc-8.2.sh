@@ -30,3 +30,11 @@ cd gcc-8.2.0
 ./configure --disable-multilib --prefix=/opt/gcc-8.2.0 && make -j 40 && make install
 
 cd && rm -rf /tmp/setup-gcc
+
+gcc_path="export PATH=/opt/gcc-8.2.0/bin:$PATH
+export LD_LIBRARY_PATH=/opt/gcc-8.2.0/lib64:$LD_LIBRARY_PATH
+export CC=/opt/gcc-8.2.0/bin/gcc
+export GCC=/opt/gcc-8.2.0/bin/gcc"
+
+#set env on /mnt/shared/ which can be used when launched after VM is generalized
+echo -e "$gcc_path" >> /mnt/shared/setenv

@@ -5,13 +5,23 @@ mkdir -p /mnt/shared/tensorflow
 chmod -R 777 /mnt/shared/
 
 # Install dev_tools, MLNX OFED driver, IPoIB, WALinuxAgent, gcc 8.2, UCX1.5, OpenMPI4.0, Singularity libraries
-./setup-host.sh
 
-source /mnt/shared/setenv
+if [ $# != 1 ]; then
+    echo "\nMissing arguments. Usage: setup-host-and-build-container.sh <intelmpi|openmpi> \n"
+    exit 1
+fi
 
 pushd install-scripts
-singularity build /mnt/shared/tensorflow/tf-hvd-gcc-ompi-ucx-mlnx.sif tf-hvd-gcc-ompi-ucx-mlnx.def
-popd
 
-#Run the container for sanity check.
-singularity run /mnt/shared/tensorflow/tf-hvd-gcc-ompi-ucx-mlnx.sif
+if [ "$1" == "intelmpi" ]; then
+    ./setup.sh intelmpi host
+    ./build-container.sh intelmpi
+elif [ "$1" == "openmpi" ]; then
+    ./setup.sh openmpi host
+    ./build-container.sh openmpi
+else
+    echo "\n Argument error. Use <intelmpi|openmpi>. Usage: setup.sh <intelmpi|openmpi> \n"
+    exit 1
+fi
+
+popd

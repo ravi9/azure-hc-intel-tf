@@ -11,11 +11,11 @@ cat << EOF >> /etc/security/limits.conf
 EOF
 
 # Disable GSS proxy
- yum install -y nfs-utils
+yum install -y nfs-utils
 sed -i 's/GSS_USE_PROXY="yes"/GSS_USE_PROXY="no"/g' /etc/sysconfig/nfs
 
 # Enable reclaim mode
-if [ -e x.txt ]; then
+if [ -e /etc/sysctl.conf ]; then
   cp /etc/sysctl.conf /tmp/sysctl.conf
   echo "vm.zone_reclaim_mode = 1" >> /tmp/sysctl.conf
   cp /tmp/sysctl.conf /etc/sysctl.conf

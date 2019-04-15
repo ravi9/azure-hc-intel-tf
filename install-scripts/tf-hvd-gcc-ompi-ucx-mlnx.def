@@ -12,12 +12,15 @@ rm -rf /var/cache/yum
 yum -y install epel-release
 yum -y install wget git
 
+mkdir -p /mnt/shared/tensorflow
+chmod -R 777 /mnt/shared/
+
 cd ~
 git clone https://github.com/ravi9/azure-hc-intel-tf.git
-cd ~/azure-hc-intel-tf/install-scripts
+cd ~/azure-hc-intel-tf
 
 # Install dev_tools, OFED, IPoIB, WALinuxAgent, gcc 8.2, UCX1.5, OpenMPI4.0, miniconda, intel-tensorflow, horovod libraries
-./setup-container.sh
+./setup.sh openmpi container
 
 %environment
 
@@ -38,12 +41,13 @@ export MPI_HOME=/opt/openmpi-4.0.0
 export PATH=/opt/miniconda3/bin:$PATH
 
 %runscript
-echo "This is a Singularity image containing Intel optimized TensorFlow installation with Horovod, OpenMPI, UCX"
+echo "This is a Singularity image containing Intel optimized TensorFlow installation with Horovod, Intel-MPI, Lifabric"
 echo "Operating System: $(cat /etc/redhat-release)"
 echo "GCC: $(gcc --version)"
 echo "TensorFlow: $(pip show tensorflow --disable-pip-version-check | grep "^Version:" | awk '{print $NF}')"
+echo "MKL shared libs: $(ldd $(pip show tensorflow | grep Location | cut -d ":" -f2)/tensorflow/libtensorflow_framework.so | grep libmklml)"
+echo "IsMklEnabled: "
+python -c "import tensorflow as tf; print(tf.pywrap_tensorflow.IsMklEnabled())"
 echo "Horovod: $(pip show horovod --disable-pip-version-check | grep "^Version:" | awk '{print $NF}')"
-echo "OpenMPI: $(ompi_info | grep "Open MPI:" | awk '{print $NF}')"
 echo "OFED: $(ofed_info | grep MLNX_OFED)"
-echo "UCX Version: $(ucx_info -v)"
 echo "TensorFlow Benchmarks: /opt/tensorflow-benchmarks"
