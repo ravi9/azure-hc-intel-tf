@@ -72,6 +72,3 @@ echo -e "
 ########################################################
 Run 'source /mnt/shared/setenv' to set paths for GCC and MPI
 ######################################################## "
-
-#cd to azure-hc-intel-tf
-popd

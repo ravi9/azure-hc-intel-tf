@@ -39,7 +39,7 @@ export LD_LIBRARY_PATH=/opt/libfabric-debug/lib:$LD_LIBRARY_PATH
 export PATH=/opt/miniconda3/bin:$PATH
 
 %runscript
-echo "This is a Singularity image containing Intel optimized TensorFlow installation with Horovod, OpenMPI, UCX"
+echo "This is a Singularity image containing Intel optimized TensorFlow installation with Horovod, Intel MPI, Libfabric"
 echo "Operating System: $(cat /etc/redhat-release)"
 echo "GCC: $(gcc --version)"
 echo "TensorFlow: $(pip show tensorflow --disable-pip-version-check | grep "^Version:" | awk '{print $NF}')"
