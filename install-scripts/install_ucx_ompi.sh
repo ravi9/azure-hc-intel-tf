@@ -3,10 +3,7 @@
 
 set -ex
 
-export PATH=/opt/gcc-8.2.0/bin:$PATH
-export LD_LIBRARY_PATH=/opt/gcc-8.2.0/lib64:$LD_LIBRARY_PATH
-export CC=/opt/gcc-8.2.0/bin/gcc
-export GCC=/opt/gcc-8.2.0/bin/gcc
+source /mnt/shared/setenv
 
 INSTALL_PREFIX=/opt
 
@@ -28,3 +25,16 @@ cd openmpi-4.0.0
 cd ..
 
 cd && rm -rf /tmp/mpi
+
+ompi_path="export PATH=/opt/openmpi-4.0.0/bin:$PATH
+export LD_LIBRARY_PATH=/opt/openmpi-4.0.0/lib:$LD_LIBRARY_PATH
+export MANPATH=/opt/openmpi-4.0.0/share/man:$MANPATH
+export MPI_BIN=/opt/openmpi-4.0.0/bin
+export MPI_INCLUDE=/opt/openmpi-4.0.0/include
+export MPI_LIB=/opt/openmpi-4.0.0/lib
+export MPI_MAN=/opt/openmpi-4.0.0/share/man
+export MPI_HOME=/opt/openmpi-4.0.0"
+
+echo -e "$ompi_path" >> /mnt/shared/setenv
+
+source /mnt/shared/setenv

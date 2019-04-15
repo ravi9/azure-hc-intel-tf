@@ -38,3 +38,4 @@ export GCC=/opt/gcc-8.2.0/bin/gcc"
 
 #set env on /mnt/shared/ which can be used when launched after VM is generalized
 echo -e "$gcc_path" >> /mnt/shared/setenv
+chmod 755 /mnt/shared/setenv
