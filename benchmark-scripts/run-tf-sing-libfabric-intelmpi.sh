@@ -68,7 +68,7 @@ TF_ARGS=" \
  --num_intra_threads=${INTRA_T} \
  --num_inter_threads=${INTER_T} \
  --kmp_blocktime=1 \
- --kmp_affinity='granularity=fine,noverbose,compact,1,0' \
+ --kmp_affinity=granularity=fine,noverbose,compact,1,0 \
  --display_every=10 \
  --data_format=NCHW \
  --optimizer=momentum \
@@ -84,7 +84,7 @@ TF_ARGS=" \
 echo -e "Common Args: $args"
 
 if [ "${FABRIC}" == "ib" ]; then
-    OFI_PROV=verbs
+    OFI_PROV='verbs;ofi_rxm'
 else
     OFI_PROV=sockets
 fi
@@ -94,7 +94,7 @@ echo -e "TF Args: $FABRIC_ARGS"
 run_cmd="mpiexec.hydra \
 -f ${HOSTFILEPATH} \
 -genv I_MPI_FABRICS shm:ofi \
--genv I_MPI_OFI_PROVIDER ${OFI_PROV} \
+-genv FI_PROVIDER ${OFI_PROV} \
 -genv I_MPI_DEBUG 5 \
 -np ${TOTAL_WORKERS} \
 -ppn ${WORKERS_PER_NODE} \

@@ -73,7 +73,7 @@ TF_ARGS=" \
  --num_intra_threads=${INTRA_T} \
  --num_inter_threads=${INTER_T} \
  --kmp_blocktime=1 \
- --kmp_affinity='granularity=fine,noverbose,compact,1,0' \
+ --kmp_affinity=granularity=fine,noverbose,compact,1,0 \
  --display_every=10 \
  --data_format=NCHW \
  --optimizer=momentum \
