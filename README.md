@@ -1,5 +1,4 @@
-
-# azure-hc-intel-tf
+## Benchmarking Azure HC-Series with Intel optimized Tensorflow w/ Horovod
 Setup Azure HC-series to run deep learning distributed training with  intel-tensorflow and Horovod
 
 ### Contributors:
