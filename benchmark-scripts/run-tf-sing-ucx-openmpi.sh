@@ -11,13 +11,7 @@
 # To run 2nodes, 4 workers, with Sockets(Ethernet)
 #Ex: ./run-tf-sing-ucx-openmpi.sh 2 1 64 sock 2>&1 | tee ~/logs/tfmn-2n-64b-real-sock-r1.log
 
-export PATH=/opt/gcc-8.2.0/bin:$PATH
-export LD_LIBRARY_PATH=/opt/gcc-8.2.0/lib64:$LD_LIBRARY_PATH
-export CC=/opt/gcc-8.2.0/bin/gcc
-export GCC=/opt/gcc-8.2.0/bin/gcc
-export PATH=/opt/openmpi-4.0.0/bin:$PATH
-export LD_LIBRARY_PATH=/opt/openmpi-4.0.0/lib:$LD_LIBRARY_PATH
-echo $LD_LIBRARY_PATH
+source /mnt/shared/setenv
 
 PATH_TO_SINGULARITY="/usr/bin/singularity"
 PATH_TO_SIMG="/mnt/shared/tensorflow/tf-hvd-gcc-ompi-ucx-mlnx.sif"
@@ -105,7 +99,7 @@ echo -e "TF Args: $FABRIC_ARGS"
 run_cmd="mpirun \
 --oversubscribe -np ${TOTAL_WORKERS} \
 -hostfile ${HOSTFILEPATH} \
---map-by ppr:${WORKERS_PER_SOCKET}:socket,pe=${CORES_PER_SOCKET} \
+--map-by ppr:${WORKERS_PER_SOCKET}:socket,pe=${CORES_PER_WORKER} \
 ${FABRIC_ARGS} \
 -x OMP_NUM_THREADS=$OMP_NUM_THREADS \
 -x HOROVOD_FUSION_THRESHOLD=134217728 \
@@ -117,4 +111,3 @@ $TF_ARGS "
 echo -e "$run_cmd"
 
 $run_cmd
-
