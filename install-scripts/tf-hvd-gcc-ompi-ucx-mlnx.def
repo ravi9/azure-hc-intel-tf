@@ -17,7 +17,7 @@ chmod -R 777 /mnt/shared/
 
 cd /tmp/
 git clone https://github.com/ravi9/azure-hc-intel-tf.git
-cd /tmp/azure-hc-intel-tf
+cd /tmp/azure-hc-intel-tf/install-scripts
 
 # Install dev_tools, OFED, IPoIB, WALinuxAgent, gcc 8.2, UCX1.5, OpenMPI4.0, miniconda, intel-tensorflow, horovod libraries
 ./setup.sh openmpi container
