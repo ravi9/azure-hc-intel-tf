@@ -21,8 +21,7 @@ echo -e "$conda_path" >> /mnt/shared/setenv
 source /mnt/shared/setenv
 
 conda install -y tensorflow
-wget https://www.dropbox.com/s/fqhihogyvnznh6i/horovod-0.16.1.tar.gz
-pip install --no-cache-dir horovod-0.16.1.tar.gz
+pip install --no-cache-dir Horovod
 
 tfversion=$(python -c "import tensorflow as tf;print(tf.__version__)")
 tf_ver_rel_arr=(${tfversion//./ })  # Parse version and release
