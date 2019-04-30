@@ -24,7 +24,7 @@ yum -y install intel-icc-runtime intel-ifort-runtime intel-mkl-runtime
 wget https://github.com/ofiwg/libfabric/releases/download/v1.7.1/libfabric-1.7.1.tar.gz
 tar -xf libfabric-1.7.1.tar.gz
 cd libfabric-1.7.1/
-./configure --prefix=/opt/libfabric-debug --enable-debug --enable-mlx=no --enable-verbs=yes
+./configure --prefix=/opt/libfabric-debug --enable-mlx=no --enable-verbs=yes
 make -j 40 && make install
 
 cd && rm -rf /tmp/mpi
