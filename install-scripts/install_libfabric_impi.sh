@@ -13,7 +13,7 @@ cd /tmp/mpi
 # Intel MPI 2019 (update 3)
 yum-config-manager --add-repo https://yum.repos.intel.com/mpi/setup/intel-mpi.repo
 rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
-yum -y install intel-mpi-2019.3-062
+yum -y install intel-mpi-2019.4-070.x86_64
 
 ## INSTALL INTEL RUNTIME DEPS ##
 rpm --import https://yum.repos.intel.com/2019/setup/RPM-GPG-KEY-intel-psxe-runtime-2019
