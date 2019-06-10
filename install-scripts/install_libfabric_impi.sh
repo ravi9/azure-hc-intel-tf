@@ -31,7 +31,9 @@ cd && rm -rf /tmp/mpi
 
 impi_path="
 export PATH=/opt/libfabric/bin:\$PATH
-export LD_LIBRARY_PATH=/opt/libfabric/lib:\$LD_LIBRARY_PATH "
+export LD_LIBRARY_PATH=/opt/libfabric/lib:\$LD_LIBRARY_PATH 
+source /opt/intel/impi/2019.4.243/intel64/bin/mpivars.sh 
+"
 
 #set env on /mnt/shared/ which can be used when launched after VM is generalized
 echo -e "$impi_path" >> /mnt/shared/setenv
