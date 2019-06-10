@@ -24,13 +24,13 @@ yum -y install intel-icc-runtime intel-ifort-runtime intel-mkl-runtime
 wget https://github.com/ofiwg/libfabric/releases/download/v1.7.1/libfabric-1.7.1.tar.gz
 tar -xf libfabric-1.7.1.tar.gz
 cd libfabric-1.7.1/
-./configure --prefix=/opt/libfabric-debug --enable-debug --enable-mlx=no --enable-verbs=yes
+./configure --prefix=/opt/libfabric --enable-mlx=no --enable-verbs=yes
 make -j 40 && make install
 
 cd && rm -rf /tmp/mpi
 
-impi_path="export PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/bin:/opt/libfabric-debug/bin:$PATH
-export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/lib:/opt/intel/compilers_and_libraries/linux/mpi/intel64/lib/release_mt:/opt/libfabric-debug/lib:$LD_LIBRARY_PATH"
+impi_path="export PATH=/opt/libfabric/bin:$PATH"
+export LD_LIBRARY_PATH=/opt/libfabric/lib:$LD_LIBRARY_PATH"
 
 #set env on /mnt/shared/ which can be used when launched after VM is generalized
 echo -e "$impi_path" >> /mnt/shared/setenv
