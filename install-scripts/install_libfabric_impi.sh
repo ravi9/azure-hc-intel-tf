@@ -29,8 +29,9 @@ make -j 40 && make install
 
 cd && rm -rf /tmp/mpi
 
-impi_path="export PATH=/opt/libfabric/bin:$PATH"
-export LD_LIBRARY_PATH=/opt/libfabric/lib:$LD_LIBRARY_PATH"
+impi_path="
+export PATH=/opt/libfabric/bin:\$PATH
+export LD_LIBRARY_PATH=/opt/libfabric/lib:\$LD_LIBRARY_PATH "
 
 #set env on /mnt/shared/ which can be used when launched after VM is generalized
 echo -e "$impi_path" >> /mnt/shared/setenv
