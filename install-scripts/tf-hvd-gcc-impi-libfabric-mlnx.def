@@ -33,7 +33,6 @@ export GCC=/opt/gcc-8.2.0/bin/gcc
 
 export PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/bin:$PATH
 export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries/linux/mpi/intel64/lib/release_mt:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/opt/libfabric-debug/lib:$LD_LIBRARY_PATH
 
 export PATH=/opt/miniconda3/bin:$PATH
